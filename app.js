@@ -12,7 +12,7 @@ const fs = require("fs");
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
-app.get('/files', (req, res) => {
+app.post('/files', (req, res) => {
     try {
 
         const { path } = req.body;
