@@ -3,11 +3,13 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const app = express();
 const os = require("os");
+const cors = require("cors");
 
 app.use(morgan(':remote-addr - [:date[web]] ":method :url HTTP/:http-version" :status :res[content-length]'));
 app.use(bodyParser.json({
     limit: '100mb'
 }));
+app.use(cors());
 const port = 3000;
 const fs = require("fs");
 
