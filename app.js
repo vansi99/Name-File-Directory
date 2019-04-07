@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const app = express();
+const os = require("os");
 
 app.use(morgan(':remote-addr - [:date[web]] ":method :url HTTP/:http-version" :status :res[content-length]'));
 app.use(bodyParser.json({
@@ -15,7 +16,11 @@ app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/files', (req, res) => {
     try {
 
-        const { path } = req.query;
+        let { path } = req.query;
+        
+        if(!path){
+            path = os.homedir()+"/";
+        }
         console.log(path);
 
         let items = fs.readdirSync(path);
