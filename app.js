@@ -12,10 +12,10 @@ const fs = require("fs");
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
-app.post('/files', (req, res) => {
+app.get('/files', (req, res) => {
     try {
 
-        const { path } = req.body;
+        const { path } = req.query;
         console.log(path);
 
         let items = fs.readdirSync(path);
